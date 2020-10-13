@@ -1,6 +1,6 @@
-# nimap
+# app_plugin_example
 
-A new Flutter project.
+Demonstrates how to use the app_plugin plugin.
 
 ## Getting Started
 

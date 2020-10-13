@@ -1,6 +1,6 @@
-# nimap
+# one_plugin_example
 
-A new Flutter project.
+Demonstrates how to use the one_plugin plugin.
 
 ## Getting Started
 

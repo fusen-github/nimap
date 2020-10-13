@@ -1,0 +1,87 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  
+  puts "aaa --- fusen -- ";
+  puts "付森";
+  puts generated_xcode_build_settings_path
+  puts "bbb -- fusen";
+  
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+flutter_pod_path = File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+puts "来了-"
+puts flutter_pod_path
+puts "来了-"
+
+require flutter_pod_path
+
+flutter_ios_podfile_setup
+
+# 安装自定义的三方库pods
+def install_ni_third_libs_pods(ios_application_path = nil)
+  # 检查ios app路径
+  # defined_in_file is set by CocoaPods and is a Pathname to the Podfile.
+  ios_application_path ||= File.dirname(defined_in_file.realpath) if self.respond_to?(:defined_in_file)
+  raise '找不到iOS app路径' unless ios_application_path
+
+  copied_third_dir = File.join(ios_application_path, 'ThirdPartys')
+#  copied_framework_path = File.join(copied_flutter_dir, 'Flutter.framework')
+  copied_podspec_path = File.join(copied_third_dir, 'ThirdPartys.podspec')
+  
+  puts '打印路径'
+  puts copied_third_dir
+  puts copied_podspec_path
+  puts '打印路径'
+  
+  # 如果ThirdPartys.podspec文件不存在，直接返回
+  unless File.exist?(copied_podspec_path)
+    return
+  end
+  
+  # Keep pod path relative so it can be checked into Podfile.lock.
+  pod 'ThirdPartys', :path => 'ThirdPartys'
+  
+end
+
+target 'Runner' do
+  use_frameworks!
+  use_modular_headers!
+
+#  realpath_tmp = File.dirname(File.realpath(__FILE__))
+#  puts "路径_tmp"
+#  puts realpath_tmp
+  
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  
+  # 安装本地三方库pods
+  install_ni_third_libs_pods File.dirname(File.realpath(__FILE__))
+  
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+  end
+end

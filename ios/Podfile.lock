@@ -1,0 +1,33 @@
+PODS:
+  - app_plugin (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - one_plugin (0.0.1):
+    - Flutter
+  - ThirdPartys (0.0.1)
+
+DEPENDENCIES:
+  - app_plugin (from `.symlinks/plugins/app_plugin/ios`)
+  - Flutter (from `Flutter`)
+  - one_plugin (from `.symlinks/plugins/one_plugin/ios`)
+  - ThirdPartys (from `ThirdPartys`)
+
+EXTERNAL SOURCES:
+  app_plugin:
+    :path: ".symlinks/plugins/app_plugin/ios"
+  Flutter:
+    :path: Flutter
+  one_plugin:
+    :path: ".symlinks/plugins/one_plugin/ios"
+  ThirdPartys:
+    :path: ThirdPartys
+
+SPEC CHECKSUMS:
+  app_plugin: 0968b59e259e0558e11b43ab50bfc9915d7ecc30
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  one_plugin: ef77fae4fcd9c8bb89ff56d3f3c4f86d87dbfc43
+  ThirdPartys: fad536d7a65bc0e49741b5e3f043a54bc865d666
+
+PODFILE CHECKSUM: c670329e60033b77d439acf388313839f5a54688
+
+COCOAPODS: 1.9.3
