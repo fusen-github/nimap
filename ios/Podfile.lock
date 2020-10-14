@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
     :path: ThirdPartys
 
 SPEC CHECKSUMS:
-  app_plugin: 0968b59e259e0558e11b43ab50bfc9915d7ecc30
+  app_plugin: 4eea40275c6e64247d4291a54624e615145e5ed9
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   one_plugin: ef77fae4fcd9c8bb89ff56d3f3c4f86d87dbfc43
   ThirdPartys: fad536d7a65bc0e49741b5e3f043a54bc865d666
